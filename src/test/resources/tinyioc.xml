@@ -11,7 +11,7 @@
     <bean id="outputService" class="com.test.OutputServiceImpl">
     </bean>
 
-    <bean id="helloWorldService" class="com.com.HelloWorldServiceImpl">
+    <bean id="helloWorldService" class="com.test.HelloWorldServiceImpl">
         <property name="text" value="Hello World!"></property>
         <property name="outputService" ref="outputService"></property>
     </bean>

@@ -37,11 +37,11 @@ public class BeanDefinition {
 
     public void setClassName(String className) {
         ClassName = className;
-       /* try{
+        try{
             ClassType = Class.forName(className);
         }catch (ClassNotFoundException e){
             e.printStackTrace();
-        }*/
+        }
     }
 
     public void setClassType(Class classType) {
