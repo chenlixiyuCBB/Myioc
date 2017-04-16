@@ -11,7 +11,7 @@ public class ApplicationContextTest {
     @Test
     public void test() throws Exception {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("tinyioc.xml");
-        
+
         // OutputService outputService = (OutputService) applicationContext.getBean("outputService");
         HelloWorldService helloWorldService = (HelloWorldService) applicationContext.getBean("helloWorldService");
 
