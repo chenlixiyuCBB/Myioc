@@ -30,7 +30,6 @@ public abstract class AbstractBeanFactory implements BeanFactory{
         //如果bean还未装载，则装载bean
         if(bean == null){
             bean = doCreatBean(beanDefinition);
-            beanDefinitionMap.put(name,beanDefinition);
 
             //TODO
             //AOP
