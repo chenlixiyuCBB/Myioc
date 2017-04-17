@@ -1,6 +1,6 @@
 package ext;
 
-import factory.BeanFactory;
+import factory.AbstractBeanFactory;
 
 /**
  * Created by clxy on 2017/4/16.
@@ -10,5 +10,5 @@ import factory.BeanFactory;
  * 后续扩展使用
  */
 public interface BeanFactoryAware {
-    void setBeanFactory(BeanFactory beanFactory) throws Exception;
+    void setBeanFactory(AbstractBeanFactory beanFactory) throws Exception;
 }

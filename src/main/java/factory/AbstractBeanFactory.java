@@ -5,6 +5,7 @@ package factory;
  */
 
 import definition.BeanDefinition;
+import ext.BeanPostProcessor;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,6 +18,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public abstract class AbstractBeanFactory implements BeanFactory{
       private Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<String, BeanDefinition>();
+      //保存proxyCreator，这是织入AOP的关键点
+      private List<BeanPostProcessor> beanPostProcessors = new ArrayList<BeanPostProcessor>();
 
       private List<String> beanDefinitionNames = new ArrayList<String>();
 
@@ -37,6 +40,24 @@ public abstract class AbstractBeanFactory implements BeanFactory{
 
         return bean;
     }
+
+    /** 这是初始化proxy的函数
+     *
+     * @param bean
+     * @param name
+     * @return
+     * @throws Exception
+     */
+    protected Object initializeBean(Object bean,String name)throws Exception{
+        for(BeanPostProcessor beanPostProcessor : beanPostProcessors){
+            bean = beanPostProcessor.postProcessorBeforInitializiton(bean,name);
+        }
+        for(BeanPostProcessor beanPostProcessor : beanPostProcessors){
+            bean = beanPostProcessor.postProcessorAfterInitializition(bean,name);
+        }
+        return bean;
+    }
+
     protected Object doCreatBean(BeanDefinition beanDefinition)throws Exception{
         Object bean = createBeanInstance(beanDefinition);
         beanDefinition.setBean(bean);
